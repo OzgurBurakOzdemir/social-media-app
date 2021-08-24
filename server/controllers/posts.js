@@ -1,9 +1,17 @@
 
+const PostMessage = require('../models/postMessage')
+
 const getPosts = (req, res) =>
 {
-    res.send('Don\'t worry be happy')
+    res.send('Get Post ')
+
+}
+const createPost = (req, res) =>
+{
+    res.send('Create Post')
 
 }
 module.exports = {
-    getPosts
+    getPosts,
+    createPost
 }
