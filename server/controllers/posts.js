@@ -1,14 +1,32 @@
 
 const PostMessage = require('../models/postMessage')
 
-const getPosts = (req, res) =>
+const getPosts = async (req, res) =>
 {
-    res.send('Get Post ')
+    try
+    {
+        const postMessages = await PostMessage.find()
+
+        console.log(postMessages)
+        res.status(200).json(postMessages)
+    } catch (err)
+    {
+        res.status(404).json({ message: err.message })
+    }
 
 }
-const createPost = (req, res) =>
+const createPost = async (req, res) =>
 {
-    res.send('Create Post')
+    const post = req.body
+    const newPost = new PostMessage(post)
+    try
+    {
+        await newPost.save()
+        res.status(201).json(newPost)
+    } catch (err)
+    {
+        res.status(409).json({ message: err.message })
+    }
 
 }
 module.exports = {
