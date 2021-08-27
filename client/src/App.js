@@ -8,6 +8,7 @@ import { getPosts } from './actions/posts';
 import useStyles from './styles';
 import logo from './images/logo.png';
 
+require("dotenv").config();
 const App = () =>
 {
     const [currentId, setCurrentId] = useState(0);
@@ -22,7 +23,7 @@ const App = () =>
     return (
         <Container maxWidth="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">
-                <Typography className={classes.heading} variant="h2" align="center">Social media appp</Typography>
+                <Typography className={classes.heading} variant="h2" align="center">Social media app</Typography>
                 <img className={classes.image} src={logo} alt="icon" height="60" />
             </AppBar>
             <Grow in>

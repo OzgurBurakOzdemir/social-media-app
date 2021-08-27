@@ -7,6 +7,8 @@ import cors from 'cors';
 
 import postRoutes from './routes/posts.js';
 
+require("dotenv").config();
+
 const app = express();
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
@@ -15,7 +17,7 @@ app.use(cors());
 
 app.use('/posts', postRoutes);
 
-const CONNECTION_URL = 'mongodb+srv://ozgur:JBmWhTW0pvq5Gc4O@taskmanager.rg4yv.mongodb.net/SOCIAL-MEDIA-APP?retryWrites=true&w=majority';
+const CONNECTION_URL = process.env.MONGO_URI
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
