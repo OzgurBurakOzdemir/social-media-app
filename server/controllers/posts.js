@@ -1,11 +1,12 @@
-import express from 'express';
-import mongoose from 'mongoose';
+const express = require('express')
+const mongoose = require('mongoose')
+const PostMessage = require('../models/postMessage.js')
 
-import PostMessage from '../models/postMessage.js';
+
 
 const router = express.Router();
 
-export const getPosts = async (req, res) =>
+const getPosts = async (req, res) =>
 {
     try
     {
@@ -18,7 +19,7 @@ export const getPosts = async (req, res) =>
     }
 }
 
-export const getPost = async (req, res) =>
+const getPost = async (req, res) =>
 {
     const { id } = req.params;
 
@@ -33,7 +34,7 @@ export const getPost = async (req, res) =>
     }
 }
 
-export const createPost = async (req, res) =>
+const createPost = async (req, res) =>
 {
     const { title, message, selectedFile, creator, tags } = req.body;
 
@@ -50,7 +51,7 @@ export const createPost = async (req, res) =>
     }
 }
 
-export const updatePost = async (req, res) =>
+const updatePost = async (req, res) =>
 {
     const { id } = req.params;
     const { title, message, creator, selectedFile, tags } = req.body;
@@ -64,7 +65,7 @@ export const updatePost = async (req, res) =>
     res.json(updatedPost);
 }
 
-export const deletePost = async (req, res) =>
+const deletePost = async (req, res) =>
 {
     const { id } = req.params;
 
@@ -75,7 +76,7 @@ export const deletePost = async (req, res) =>
     res.json({ message: "Post deleted successfully." });
 }
 
-export const likePost = async (req, res) =>
+const likePost = async (req, res) =>
 {
     const { id } = req.params;
 
@@ -89,4 +90,11 @@ export const likePost = async (req, res) =>
 }
 
 
-export default router;
+module.exports = {
+    getPosts,
+    getPost,
+    createPost,
+    updatePost,
+    deletePost,
+    likePost,
+};
